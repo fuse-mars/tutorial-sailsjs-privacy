@@ -17,8 +17,9 @@ Its [ORM]() makes it very very easy to manage data entry and retrieval.
 The ease for data entry and retrieval is great for development and testing purposes, but really bad for production purposes.
 
 # Sailsjs Policies
-In short, a **policy** is 
-more info can be found at [sailsjs site]()
+In short, a **sailsjs policy** is a javascript function that runs **before** any bound controller's action can get executed.
+This function contains logic for *authorization* and *access control*.
+More info can be found at [sailsjs site]()
 
 # Steps
 0. Create a new sails app and go inside it
