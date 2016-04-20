@@ -2,8 +2,11 @@
 
 Protecting your data using sails policy
 
+# Prerequisite
+* Intermediate Knwoledge of [nodejs]()
+
 # Goal
-We are creating a *secured* app to manage different `teams` in a company.
+We are creating a **secured** app to manage different `teams` in a company.
 A team can have a name, a description, and a list of members.
 
 # The good
@@ -13,6 +16,9 @@ Its [ORM]() makes it very very easy to manage data entry and retrieval.
 # The bad
 The ease for data entry and retrieval is great for development and testing purposes, but really bad for production purposes.
 
+# Sailsjs Policies
+In short, a **policy** is 
+more info can be found at [sailsjs site]()
 
 # Steps
 0. Create a new sails app and go inside it
