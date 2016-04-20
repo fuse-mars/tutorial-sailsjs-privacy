@@ -1,4 +1,4 @@
-# tutorial-sailsjs-privacy
+# Tutorial-sailsjs-privacy
 
 Protecting your data using sails policy
 
