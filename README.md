@@ -94,7 +94,7 @@ module.exports.policies = {
 # unauthorized access
 curl http://localhost:1337/team
 
-# unauthorized access
+# authorized access
 curl --header "authorization: bearer fusemachines" http://localhost:1337/team
 ```
 
