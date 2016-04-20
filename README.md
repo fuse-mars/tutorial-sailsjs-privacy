@@ -4,6 +4,7 @@ Protecting your data using sails policy
 
 # Prerequisite
 * Intermediate Knowledge of [Nodejs](https://nodejs.org/en/)
+* Basic Knowledge of [Sailsjs](http://sailsjs.org/)
 
 # Inspiration
 [An article](https://kev.inburke.com/kevin/dont-use-sails-or-waterline/) by [@ekrubnivek](https://twitter.com/ekrubnivek) brought to the table, all reasons for **NOT using Sailsjs in production**. However, at [Fusemachines](https://www.fusemachines.com), we have an application written in Sailsjs that handles third part information. So I did some digging and found out that the security concerns mentioned in this article, are no longer a great concern if you know what you are doing. 
