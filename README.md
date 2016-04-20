@@ -3,10 +3,10 @@
 Protecting your data using sails policy
 
 # Prerequisite
-* Intermediate Knwoledge of [nodejs](https://nodejs.org/en/)
+* Intermediate Knowledge of [Nodejs](https://nodejs.org/en/)
 
 # Inspiration
-[An article](https://kev.inburke.com/kevin/dont-use-sails-or-waterline/) by [@ekrubnivek](https://twitter.com/ekrubnivek) brought to the table, all reasons for **NOT using Sailsjs in production**. However, at [Fusemachines](), we have an application written in Sailsjs that handles third part information. So I did some digging and found out that the security concerns mentioned in this article, are no longer a great concern if you know what you are doing. 
+[An article](https://kev.inburke.com/kevin/dont-use-sails-or-waterline/) by [@ekrubnivek](https://twitter.com/ekrubnivek) brought to the table, all reasons for **NOT using Sailsjs in production**. However, at [Fusemachines](https://www.fusemachines.com), we have an application written in Sailsjs that handles third part information. So I did some digging and found out that the security concerns mentioned in this article, are no longer a great concern if you know what you are doing. 
 
 Few key points that we followed to continue using Sailsjs (i came up with these by myself by the way).
 * An internet application is supposed to be accessible by the public, so it makes sense for Sailsjs team to make **generated routes**, public by default.
@@ -19,7 +19,7 @@ A team can have a name, a description, and a list of members.
 
 # The good
 [Sailsjs](sailsjs.org) is a great framework for building backend applications that serve information through REST API's.
-Its [ORM]() makes it very very easy to manage data entry and retrieval. 
+Its [ORM](https://en.wikipedia.org/wiki/Object-role_modeling) makes it very very easy to manage data entry and retrieval. 
 
 # The bad
 The ease for data entry and retrieval is great for development and testing purposes, but really bad for production purposes.
