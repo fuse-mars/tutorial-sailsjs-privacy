@@ -19,6 +19,7 @@ The ease for data entry and retrieval is great for development and testing purpo
 # Sailsjs Policies
 In short, a **sailsjs policy** is a javascript function that runs **before** any bound controller's action can get executed.
 This function contains logic for *authorization* and *access control*.
+
 More info can be found at [sailsjs site]()
 
 # Steps
