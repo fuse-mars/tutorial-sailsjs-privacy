@@ -3,17 +3,22 @@
 Protecting your data using sails policy
 
 # Goal
-We are creating an app to manage different `teams` in a company.
+We are creating a *secured* app to manage different `teams` in a company.
 A team can have a name, a description, and a list of members.
 
 # The good
-@TODO
+[Sailsjs](sailsjs.org) is a great framework for building backend applications that serve information through REST API's.
+Its [ORM]() makes it very very easy to manage data entry and retrieval. 
 
 # The bad
-@TODO
+The ease for data entry and retrieval is great for development and testing purposes, but really bad for production purposes.
 
 
 # Steps
+0. Create a new sails app and go inside it
+```
+sails new sailsjs-privacy; cd sailsjs-privacy
+```
 1. Create a team API
 ```
 sails generate api team
