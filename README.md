@@ -13,10 +13,6 @@ Few key points that we followed to continue using Sailsjs (i came up with these 
 * Sailsjs uses expressjs behind the scene, which is a well known nodejs web server!
 * Sailsjs team has improved their security policy guidelines, a closed [github issue](https://github.com/balderdashy/sails/issues/2830) has more detail. 
 
-# Goal
-We are creating a **secured** app to manage different `teams` in a company.
-A team can have a name, a description, and a list of members.
-
 # The good
 [Sailsjs](sailsjs.org) is a great framework for building backend applications that serve information through REST API's.
 Its [ORM](https://en.wikipedia.org/wiki/Object-role_modeling) makes it very very easy to manage data entry and retrieval. 
@@ -29,6 +25,10 @@ In short, a **sailsjs policy** is a javascript function that runs **before** any
 This function contains logic for *authorization* and *access control*.
 
 More info can be found at [sailsjs site](http://sailsjs.org/documentation/concepts/policies)
+
+# Goal
+We are creating a **secured** app to manage different `teams` in a company.
+A team can have a name, a description, and a list of members.
 
 # Steps
 0. Create a new sails app and go inside it.
