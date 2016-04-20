@@ -16,5 +16,5 @@ A team can have a name, a description, and a list of members.
 
 1. Create a team API
 ```
-
+sails generate api team
 ```
