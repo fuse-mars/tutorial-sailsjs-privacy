@@ -3,7 +3,7 @@
 Protecting your data using sails policy
 
 # Prerequisite
-* Intermediate Knwoledge of [nodejs]()
+* Intermediate Knwoledge of [nodejs](https://nodejs.org/en/)
 
 # Goal
 We are creating a **secured** app to manage different `teams` in a company.
@@ -23,7 +23,8 @@ This function contains logic for *authorization* and *access control*.
 More info can be found at [sailsjs site](http://sailsjs.org/documentation/concepts/policies)
 
 # Steps
-0. Create a new sails app and go inside it
+0. Create a new sails app and go inside it.
+Make sure your nodejs version is at least v4.4.2 and sailjs is v0.12.1
 ```
 sails new sailsjs-privacy; cd sailsjs-privacy
 ```
