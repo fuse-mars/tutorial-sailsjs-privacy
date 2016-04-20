@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>sailsjs privacy by fuse-mars</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">sailsjs privacy</h1>
+      <h2 class="project-tagline">Protecting your data using sails policy</h2>
+      <a href="https://github.com/fuse-mars/tutorial-sailsjs-privacy" class="btn">View on GitHub</a>
+      <a href="https://github.com/fuse-mars/tutorial-sailsjs-privacy/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/fuse-mars/tutorial-sailsjs-privacy/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="prerequisite" class="anchor" href="#prerequisite" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Prerequisite</h1>
+
+<ul>
+<li>Intermediate Knowledge of <a href="https://nodejs.org/en/">Nodejs</a>
+</li>
+</ul>
+
+<h1>
+<a id="inspiration" class="anchor" href="#inspiration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Inspiration</h1>
+
+<p><a href="https://kev.inburke.com/kevin/dont-use-sails-or-waterline/">An article</a> by <a href="https://twitter.com/ekrubnivek">@ekrubnivek</a> brought to the table, all reasons for <strong>NOT using Sailsjs in production</strong>. However, at <a href="">Fusemachines</a>, we have an application written in Sailsjs that handles third part information. So I did some digging and found out that the security concerns mentioned in this article, are no longer a great concern if you know what you are doing. </p>
+
+<p>Few key points that we followed to continue using Sailsjs (i came up with these by myself by the way).</p>
+
+<ul>
+<li>An internet application is supposed to be accessible by the public, so it makes sense for Sailsjs team to make <strong>generated routes</strong>, public by default.</li>
+<li>Sailsjs uses expressjs behind the scene, which is a well known nodejs web server!</li>
+<li>Sailsjs team has improved their security policy guidelines, a closed <a href="https://github.com/balderdashy/sails/issues/2830">github issue</a> has more detail. </li>
+</ul>
+
+<h1>
+<a id="goal" class="anchor" href="#goal" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Goal</h1>
+
+<p>We are creating a <strong>secured</strong> app to manage different <code>teams</code> in a company.
+A team can have a name, a description, and a list of members.</p>
+
+<h1>
+<a id="the-good" class="anchor" href="#the-good" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>The good</h1>
+
+<p><a href="sailsjs.org">Sailsjs</a> is a great framework for building backend applications that serve information through REST API's.
+Its <a href="">ORM</a> makes it very very easy to manage data entry and retrieval. </p>
+
+<h1>
+<a id="the-bad" class="anchor" href="#the-bad" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>The bad</h1>
+
+<p>The ease for data entry and retrieval is great for development and testing purposes, but really bad for production purposes.</p>
+
+<h1>
+<a id="sailsjs-policies" class="anchor" href="#sailsjs-policies" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sailsjs Policies</h1>
+
+<p>In short, a <strong>sailsjs policy</strong> is a javascript function that runs <strong>before</strong> any bound controller's action can get executed.
+This function contains logic for <em>authorization</em> and <em>access control</em>.</p>
+
+<p>More info can be found at <a href="http://sailsjs.org/documentation/concepts/policies">sailsjs site</a></p>
+
+<h1>
+<a id="steps" class="anchor" href="#steps" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Steps</h1>
+
+<ol>
+<li>Create a new sails app and go inside it.
+Make sure your nodejs version is at least v4.4.2 and sailjs is v0.12.1</li>
+</ol>
+
+<pre><code>sails new sailsjs-privacy; cd sailsjs-privacy
+</code></pre>
+
+<ol>
+<li>Create a team API</li>
+</ol>
+
+<pre><code>sails generate api team
+</code></pre>
+
+<ol>
+<li>add some attributes</li>
+</ol>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c1">module</span>.<span class="pl-smi">exports</span> <span class="pl-k">=</span> {
+
+  attributes<span class="pl-k">:</span> {
+    name<span class="pl-k">:</span> {
+        type<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>string<span class="pl-pds">'</span></span>,
+        required<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+        unique<span class="pl-k">:</span> <span class="pl-c1">true</span>
+    },
+    description<span class="pl-k">:</span> {
+        type<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>string<span class="pl-pds">'</span></span>,
+        required<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+        minLength<span class="pl-k">:</span> <span class="pl-c1">5</span>
+    },
+    members<span class="pl-k">:</span> {
+        type<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>array<span class="pl-pds">'</span></span>,
+        required<span class="pl-k">:</span> <span class="pl-c1">true</span>
+    }
+  }
+
+};</pre></div>
+
+<ol>
+<li>run the app and make sure you can access the team API</li>
+</ol>
+
+<pre><code>sails lift
+</code></pre>
+
+<ol>
+<li>save some data </li>
+</ol>
+
+<pre><code>http://localhost:1337/team/create?name=team&amp;description=hi%20there&amp;members[]=mars1&amp;members[]=mars2
+</code></pre>
+
+<ol>
+<li>make sure that the data has ben saved</li>
+</ol>
+
+<pre><code>http://localhost:1337/team/find
+</code></pre>
+
+<ol>
+<li>create a policy that restrict access to team API
+
+<ul>
+<li>can only be viewed locally i.e. the calling host is localhost</li>
+<li>can only be viewed if you provide the right authorization code</li>
+</ul>
+</li>
+</ol>
+
+<pre><code>// &lt;root-folder&gt;/api/policies/isAuthenticated.js
+module.exports = function isAuthenticated(req, res, next) {
+    const secretCode = 'bearer fusemachines';
+    const allowedOrigin = 'localhost';
+
+    if (req.headers &amp;&amp; req.headers.authorization === secretCode &amp;&amp;
+        req.host === allowedOrigin) {
+        // user is allowed
+        return next();
+    }
+
+    // User is not allowed
+    return res.forbidden('You are not permitted to perform this action.');
+};
+</code></pre>
+
+<ol>
+<li>use the policy</li>
+</ol>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// &lt;root-folder&gt;/config/policies.js</span>
+<span class="pl-c1">module</span>.<span class="pl-smi">exports</span>.<span class="pl-smi">policies</span> <span class="pl-k">=</span> {
+  TeamController<span class="pl-k">:</span> {
+    <span class="pl-s"><span class="pl-pds">'</span>*<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>isAuthenticated<span class="pl-pds">'</span></span>
+  }
+};</pre></div>
+
+<ol>
+<li><p>restart the app</p></li>
+<li><p>make sure that you cannot access the team API unless you provide the <code>authorization code</code></p></li>
+</ol>
+
+<div class="highlight highlight-source-shell"><pre><span class="pl-c"># using curl</span>
+<span class="pl-c"># unauthorized access</span>
+curl http://localhost:1337/team
+
+<span class="pl-c"># authorized access</span>
+curl --header <span class="pl-s"><span class="pl-pds">"</span>authorization: bearer fusemachines<span class="pl-pds">"</span></span> http://localhost:1337/team</pre></div>
+
+<ol>
+<li>We did it!</li>
+</ol>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/fuse-mars/tutorial-sailsjs-privacy">sailsjs privacy</a> is maintained by <a href="https://github.com/fuse-mars">fuse-mars</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
