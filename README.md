@@ -6,7 +6,7 @@ Protecting your data using sails policy
 * Intermediate Knwoledge of [nodejs](https://nodejs.org/en/)
 
 # Inspiration
-[An article](https://kev.inburke.com/kevin/dont-use-sails-or-waterline/) by [@ekrubnivek](https://twitter.com/ekrubnivek) brings to the table, all reasons for **NOT using Sailsjs in production**. However, at [Fusemachines](), we have an application written in Sailsjs that handles third part information. So I did some digging and found out that the security concerns mentioned in the article, are not really of great concern if you know what you are doing. 
+[An article](https://kev.inburke.com/kevin/dont-use-sails-or-waterline/) by [@ekrubnivek](https://twitter.com/ekrubnivek) brought to the table, all reasons for **NOT using Sailsjs in production**. However, at [Fusemachines](), we have an application written in Sailsjs that handles third part information. So I did some digging and found out that the security concerns mentioned in this article, are no longer a great concern if you know what you are doing. 
 
 A few key points that we followed to continue using Sailsjs.
 * An internet application is supposed to be accessible by the public, so it makes sense for Sailsjs team to make **generated routes**, public by default.
