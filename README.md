@@ -7,13 +7,13 @@ We are creating an app to manage different `teams` in a company.
 A team can have a name, a description, and a list of members.
 
 # The good
+@TODO
 
 # The bad
-
+@TODO
 
 
 # Steps
-
 1. Create a team API
 ```
 sails generate api team
